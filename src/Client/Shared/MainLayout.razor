@@ -1,0 +1,44 @@
+@inherits LayoutComponentBase
+
+<DxDrawer CssClass="app-shell"
+          Position="DrawerPosition.Left"
+          ToggleButtonVisible="true"
+          DrawerWidth="260px"
+          ShowBackdrop="false">
+    <DrawerTemplate>
+        <nav class="drawer-nav">
+            @foreach (var link in NavigationLinks)
+            {
+                <NavLink class="nav-link" href="@link.Url" Match="NavLinkMatch.All">@link.Title</NavLink>
+            }
+        </nav>
+    </DrawerTemplate>
+    <BodyTemplate>
+        <DxToolbar CssClass="app-toolbar">
+            <Items>
+                <DxToolbarItem Text="Aurora Workbench" CssClass="app-toolbar__title" />
+                <DxToolbarItem Alignment="ToolbarItemAlignment.Right">
+                    <Template>
+                        <span class="user-pill">Casey Contributor</span>
+                    </Template>
+                </DxToolbarItem>
+            </Items>
+        </DxToolbar>
+        <main class="app-content">
+            @Body
+        </main>
+    </BodyTemplate>
+</DxDrawer>
+
+@code {
+    private readonly IReadOnlyList<NavigationLink> NavigationLinks = new List<NavigationLink>
+    {
+        new("Dashboard", "/"),
+        new("Accounts", "/accounts"),
+        new("Projects", "/projects"),
+        new("Work Items", "/work-items"),
+        new("Reports", "/reports")
+    };
+
+    private record NavigationLink(string Title, string Url);
+}

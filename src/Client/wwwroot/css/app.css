@@ -1,0 +1,236 @@
+:root {
+    color-scheme: dark;
+    --surface: #121212;
+    --surface-elevated: #1e1e1e;
+    --surface-elevated-high: #252525;
+    --text-primary: #f5f5f5;
+    --text-secondary: #b3b3b3;
+    --accent: #1db954;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.app-shell {
+    height: 100vh;
+    background: var(--surface);
+}
+
+.drawer-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 12px;
+    background: var(--surface-elevated);
+    height: 100%;
+}
+
+.drawer-nav .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.drawer-nav .nav-link.active,
+.drawer-nav .nav-link:hover {
+    background: rgba(29, 185, 84, 0.18);
+    color: #fff;
+}
+
+.app-toolbar {
+    background: linear-gradient(90deg, #1db954 0%, #212121 45%, #121212 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 24px;
+    color: #fff;
+}
+
+.app-toolbar__title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.user-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 14px;
+}
+
+.app-content {
+    padding: 32px;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.95) 0%, rgba(18, 18, 18, 0.95) 40%, rgba(18, 18, 18, 1) 100%);
+    height: calc(100vh - 68px);
+    overflow-y: auto;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.6px;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.kpi-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.kpi-card {
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 18px 28px rgba(0, 0, 0, 0.35);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+}
+
+.kpi-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.kpi-trend {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.kpi-chart {
+    background: var(--surface-elevated-high);
+    border-radius: 24px;
+    padding: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.content-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.panel {
+    background: var(--surface-elevated);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.data-grid {
+    --dxbl-grid-background-color: transparent;
+    --dxbl-grid-headers-background-color: rgba(255, 255, 255, 0.05);
+    --dxbl-grid-headers-foreground-color: var(--text-secondary);
+    --dxbl-grid-rows-foreground-color: #f1f1f1;
+}
+
+.activity-list {
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.category-pill {
+    background: rgba(29, 185, 84, 0.24);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.activity-description {
+    font-size: 14px;
+}
+
+.activity-timestamp {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    gap: 16px;
+    color: var(--text-secondary);
+}
+
+.load-indicator {
+    width: 64px;
+    height: 64px;
+}
+
+.empty-state {
+    padding: 64px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .app-content {
+        padding: 20px;
+    }
+
+    .content-section {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+}

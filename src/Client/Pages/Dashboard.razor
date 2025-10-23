@@ -1,0 +1,85 @@
+@page "/"
+@inject DashboardViewModel ViewModel
+
+<PageTitle>Dashboard</PageTitle>
+
+@if (ViewModel.IsBusy && ViewModel.Kpis.Count == 0)
+{
+    <div class="loading-state">
+        <DxLoadIndicator CssClass="load-indicator" />
+        <p>Loading your workspace…</p>
+    </div>
+}
+else
+{
+    <section class="kpi-section">
+        <header class="section-header">
+            <h2>Key Metrics</h2>
+            <span class="section-subtitle">This week at a glance</span>
+        </header>
+        <div class="kpi-grid">
+            @foreach (var kpi in ViewModel.Kpis)
+            {
+                <article class="kpi-card" style="background: @kpi.AccentColor;">
+                    <h3>@kpi.Title</h3>
+                    <p class="kpi-value">@kpi.Value</p>
+                    <span class="kpi-trend">@kpi.Trend</span>
+                </article>
+            }
+        </div>
+        <DxChart Data="@ViewModel.Kpis" CssClass="kpi-chart">
+            <DxChartTitle Text="KPI Overview" />
+            <DxChartArgumentAxis ArgumentField="Title" />
+            <DxChartValueAxis>
+                <DxChartValueAxisRange StartValue="0" />
+            </DxChartValueAxis>
+            <DxChartSeriesCollection>
+                <DxChartBarSeries ArgumentField="Title" ValueField="NumericValue" Name="Total" />
+            </DxChartSeriesCollection>
+        </DxChart>
+    </section>
+
+    <section class="content-section">
+        <div class="panel">
+            <header class="section-header">
+                <h2>My Work</h2>
+                <span class="section-subtitle">Top priorities assigned to you</span>
+            </header>
+            <DxDataGrid Data="@ViewModel.MyWork"
+                        CssClass="data-grid"
+                        ShowColumnLines="false"
+                        ShowGroupPanel="false"
+                        PageSize="8">
+                <Columns>
+                    <DxDataGridColumn Field="@nameof(MyWorkItemViewModel.Title)" Caption="Title" />
+                    <DxDataGridColumn Field="@nameof(MyWorkItemViewModel.ProjectName)" Caption="Project" />
+                    <DxDataGridColumn Field="@nameof(MyWorkItemViewModel.Status)" Caption="Status" />
+                    <DxDataGridColumn Field="@nameof(MyWorkItemViewModel.DueDate)" Caption="Due" DisplayFormat="d" />
+                    <DxDataGridColumn Field="@nameof(MyWorkItemViewModel.LoggedHours)" Caption="Hours" DisplayFormat="n1" />
+                </Columns>
+            </DxDataGrid>
+        </div>
+        <div class="panel">
+            <header class="section-header">
+                <h2>Recent Activity</h2>
+                <span class="section-subtitle">Latest collaboration updates</span>
+            </header>
+            <DxList Data="@ViewModel.Activity" CssClass="activity-list">
+                <ItemTemplate Context="item">
+                    <div class="activity-item">
+                        <span class="category-pill">@item.Category</span>
+                        <span class="activity-description">@item.Description</span>
+                        <span class="activity-timestamp">@item.CreatedAt.ToLocalTime().ToString("g")</span>
+                    </div>
+                </ItemTemplate>
+            </DxList>
+        </div>
+    </section>
+}
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ViewModel.InitializeAsync();
+    }
+}
