@@ -1,6 +1,8 @@
 @page "/"
 @inject DashboardViewModel ViewModel
 
+@using DevExpress.Blazor
+
 <PageTitle>Dashboard</PageTitle>
 
 @if (ViewModel.IsBusy && ViewModel.Kpis.Count == 0)
@@ -34,7 +36,9 @@ else
                 <DxChartValueAxisRange StartValue="0" />
             </DxChartValueAxis>
             <DxChartSeriesCollection>
-                <DxChartBarSeries ArgumentField="Title" ValueField="NumericValue" Name="Total" />
+@*                 <DxChartBarSeries ArgumentField="Title"
+                                  ValueField="NumericValue"
+                                  Name="Total" /> *@
             </DxChartSeriesCollection>
         </DxChart>
     </section>
@@ -67,9 +71,9 @@ else
             <DxList Data="@ViewModel.Activity" CssClass="activity-list">
                 <ItemTemplate Context="item">
                     <div class="activity-item">
-                        <span class="category-pill">@item.Category</span>
+@*                         <span class="category-pill">@item.Category</span>
                         <span class="activity-description">@item.Description</span>
-                        <span class="activity-timestamp">@item.CreatedAt.ToLocalTime().ToString("g")</span>
+                        <span class="activity-timestamp">@item.CreatedAt.ToLocalTime().ToString("g")</span> *@
                     </div>
                 </ItemTemplate>
             </DxList>

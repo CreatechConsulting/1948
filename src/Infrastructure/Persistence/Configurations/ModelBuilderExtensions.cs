@@ -1,6 +1,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using WorkManagement.Domain.Entities;
+using Contact = WorkManagement.Domain.Entities.Contact;
+using Label = WorkManagement.Domain.Entities.Label;
 
 namespace WorkManagement.Infrastructure.Persistence.Configurations;
 

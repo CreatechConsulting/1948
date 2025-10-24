@@ -11,7 +11,14 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddWorkManagementInfrastructure(this IServiceCollection services, Action<DbContextOptionsBuilder>? options = null)
     {
-        services.AddDbContext<AppDbContext>(options ?? (builder => builder.UseInMemoryDatabase("work-management")));
+        if (options != null)
+        {
+            services.AddDbContext<AppDbContext>(options);
+        }
+        else
+        {
+            services.AddDbContext<AppDbContext>(builder => builder.UseInMemoryDatabase("work-management"));
+        }
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
 
         services.AddScoped<IAccountReadService, AccountReadService>();

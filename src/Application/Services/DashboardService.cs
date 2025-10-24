@@ -55,7 +55,7 @@ public class DashboardService : IDashboardService
                     w.DueDate,
                     w.TimeLogs.Sum(t => ((t.End ?? t.Start) - t.Start).TotalHours)))
                 .ToListAsync(cancellationToken)
-            : Array.Empty<MyWorkItemDto>();
+            : Array.Empty<MyWorkItemDto>().ToList();
 
         var recentActivity = await _dbContext.Comments.AsNoTracking()
             .Include(c => c.Author)

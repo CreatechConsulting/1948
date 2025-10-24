@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkManagement.Application.Abstractions;
 using WorkManagement.Domain.Entities;
 using WorkManagement.Infrastructure.Persistence.Configurations;
+using Label = WorkManagement.Domain.Entities.Label;
 
 namespace WorkManagement.Infrastructure.Persistence;
 

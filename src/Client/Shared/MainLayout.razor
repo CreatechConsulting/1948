@@ -1,18 +1,11 @@
-@inherits LayoutComponentBase
 
+@inherits LayoutComponentBase
 <DxDrawer CssClass="app-shell"
           Position="DrawerPosition.Left"
           ToggleButtonVisible="true"
           DrawerWidth="260px"
           ShowBackdrop="false">
-    <DrawerTemplate>
-        <nav class="drawer-nav">
-            @foreach (var link in NavigationLinks)
-            {
-                <NavLink class="nav-link" href="@link.Url" Match="NavLinkMatch.All">@link.Title</NavLink>
-            }
-        </nav>
-    </DrawerTemplate>
+
     <BodyTemplate>
         <DxToolbar CssClass="app-toolbar">
             <Items>
@@ -29,7 +22,6 @@
         </main>
     </BodyTemplate>
 </DxDrawer>
-
 @code {
     private readonly IReadOnlyList<NavigationLink> NavigationLinks = new List<NavigationLink>
     {

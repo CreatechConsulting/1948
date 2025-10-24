@@ -10,11 +10,11 @@ A cross-platform dashboard application built with .NET 9, Blazor Hybrid (MAUI), 
 
 ## High-Level Architecture
 
-| Layer | Responsibilities |
-| --- | --- |
-| **Client (MAUI Blazor Hybrid)** | DevExpress UI components, navigation shell, local SQLite cache, offline queueing, background sync, device integrations (notifications, file pickers). |
-| **Server (ASP.NET Core minimal APIs)** | Identity & JWT auth, role-based authorization, EF Core 9 data access, SQL Server persistence, reporting endpoints, file access via signed URLs. |
-| **Sync & Integration** | Delta-based push/pull synchronization, merge policies, activity stream broadcasting, telemetry and logging via Serilog/OpenTelemetry. |
+| Layer                                  | Responsibilities                                                                                                                                      |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Client (MAUI Blazor Hybrid)**        | DevExpress UI components, navigation shell, local SQLite cache, offline queueing, background sync, device integrations (notifications, file pickers). |
+| **Server (ASP.NET Core minimal APIs)** | Identity & JWT auth, role-based authorization, EF Core 9 data access, SQL Server persistence, reporting endpoints, file access via signed URLs.       |
+| **Sync & Integration**                 | Delta-based push/pull synchronization, merge policies, activity stream broadcasting, telemetry and logging via Serilog/OpenTelemetry.                 |
 
 Additional architectural details are captured in [`docs/architecture-overview.md`](docs/architecture-overview.md).
 
@@ -44,27 +44,28 @@ Milestones covering foundation, core domain builds, collaboration features, repo
 ## Getting Started
 
 1. Install **.NET SDK 9.0** (preview) and DevExpress **v25.1** workloads locally. For MAUI development, ensure the `maui` workload plus platform-specific toolchains are available (`dotnet workload install maui`).
-2. Restore dependencies for the entire solution:
 
+2. Restore dependencies for the entire solution:
+   
    ```bash
    dotnet restore WorkManagement.sln
    ```
 
 3. Run the minimal API back end with the in-memory seed data:
-
+   
    ```bash
    dotnet run --project src/Server/WorkManagement.Server.csproj
    ```
-
+   
    The server exposes Swagger UI at `https://localhost:7162/swagger` and seeds demo content for dashboard, accounts, projects, and work items.
 
 4. (Optional) Launch the MAUI hybrid client once the API is running. For Windows:
-
+   
    ```bash
    dotnet build src/Client/WorkManagement.Client.csproj -f net9.0-windows10.0.19041.0
    dotnet run --project src/Client/WorkManagement.Client.csproj -f net9.0-windows10.0.19041.0
    ```
-
+   
    Android builds can be produced with `dotnet build -f net9.0-android`. The MAUI shell now hosts a Blazor WebView that renders the DevExpress dashboard experience defined in `src/Client/Pages`, with shared styles in `src/Client/wwwroot/css`.
 
 5. Update the DevExpress NuGet feed credentials if required by your license prior to restoring packages.

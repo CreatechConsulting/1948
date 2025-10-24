@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WorkManagement.Domain.Entities;
+using Label = WorkManagement.Domain.Entities.Label;
 
 namespace WorkManagement.Application.Abstractions;
 
